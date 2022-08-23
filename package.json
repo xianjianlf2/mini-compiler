@@ -1,0 +1,16 @@
+{
+  "name": "mini-complier",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Learn mini-complier step by step through git history.",
+  "scripts": {
+    "test": "vitest --run",
+    "coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@vitest/coverage-c8": "^0.22.1",
+    "vite": "^3.0.9",
+    "vitest": "^0.22.1"
+  }
+}
