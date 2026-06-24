@@ -1,6 +1,6 @@
-# mini-complier
+# mini-compiler
 
-这个仓库会通过 Git 提交历史，一步步把 mini-complier 搭出来。
+这个仓库会通过 Git 提交历史，一步步把 mini-compiler 搭出来。
 
 目标不是一次写完一个复杂编译器，而是按最适合理解编译流程的顺序，让同一个小编译器慢慢长出来。
 
@@ -145,7 +145,7 @@ flowchart LR
 
 ## 最终能做什么
 
-现在这个 mini-complier 可以把这种 Lisp 风格的调用：
+现在这个 mini-compiler 可以把这种 Lisp 风格的调用：
 
 ```text
 (add 2 (subtract 4 2))
@@ -178,3 +178,20 @@ npm test
 ```
 
 它会检查每一个阶段，也会检查完整 compiler 的最终输出。
+
+---
+
+## `mini-*` 源码学习系列
+
+手写主流框架 / 工具的最小可运行实现，每个仓库只追「核心主线」，不堆功能。
+
+| 仓库 | 内容 |
+| --- | --- |
+| [mini-vue](https://github.com/xianjianlf2/mini-vue) | 手写 Vue3：响应式 / runtime / 编译器 |
+| [mini-react](https://github.com/xianjianlf2/mini-react) | 手写 React：Fiber / reconciliation / Hooks |
+| [mini-koa](https://github.com/xianjianlf2/mini-koa) | 手写 Koa：中间件洋葱模型 / context |
+| [mini-webpack](https://github.com/xianjianlf2/mini-webpack) | 手写 webpack：依赖图 / loader / plugin |
+| **mini-compiler**（本仓库） | 手写 the-super-tiny-compiler：词法 / 语法 / 转换 / 生成 |
+| [ts-axios](https://github.com/xianjianlf2/ts-axios) | 手写 axios（TypeScript 版） |
+
+> Talk is cheap. Read the code.
