@@ -39,6 +39,11 @@ export function parser(tokens: Token[]) {
         token = tokens[current]
       }
 
+      // 走到这里要么遇到 ')'，要么 token 已耗尽——后者说明括号没闭合
+      if (!token) {
+        throw new TypeError(`函数调用 ${node.name} 缺少右括号 )`)
+      }
+
       current++
       return node
     }

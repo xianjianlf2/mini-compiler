@@ -10,6 +10,16 @@ export interface Token {
   value: string
 }
 
+const NAME_START = /[a-zA-Z_]/
+const NAME_CHAR = /[a-zA-Z0-9_-]/
+const ESCAPES: Record<string, string> = {
+  n: '\n',
+  t: '\t',
+  r: '\r',
+  '"': '"',
+  '\\': '\\'
+}
+
 export function tokenizer(input: string): Token[] {
   const tokens: Token[] = []
   let current = 0
@@ -44,9 +54,21 @@ export function tokenizer(input: string): Token[] {
       let value = ''
       char = input[++current]
 
-      while (char !== '"' && current < input.length) {
+      while (current < input.length && char !== '"') {
+        // 处理转义：\" \\ \n \t \r，其余 \x 原样保留 x
+        if (char === '\\') {
+          const next = input[++current]
+          value += ESCAPES[next] ?? next
+          char = input[++current]
+          continue
+        }
+
         value += char
         char = input[++current]
+      }
+
+      if (char !== '"') {
+        throw new TypeError('字符串缺少结束引号 "')
       }
 
       current++
@@ -54,10 +76,11 @@ export function tokenizer(input: string): Token[] {
       continue
     }
 
-    if (/[a-z]/i.test(char)) {
+    // 标识符：首字符为字母或下划线，后续可含字母、数字、下划线、连字符
+    if (NAME_START.test(char)) {
       let value = ''
 
-      while (/[a-z]/i.test(char) && current < input.length) {
+      while (current < input.length && NAME_CHAR.test(char)) {
         value += char
         char = input[++current]
       }
